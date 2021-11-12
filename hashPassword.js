@@ -27,13 +27,14 @@ async function hashPasswordArray(passwordArr) {
   console.log("Input Password : Hashed Output");
   console.log("------------------------------");
 
-  for (const password of passwordArr) {
+  for (const [index, password] of passwordArr.entries()) {
     try {
       const hashedPassword = await bcrypt.hash(password, 12);
   
       console.log(password + " : " + hashedPassword);
     } catch(err) {
       console.log(err);
+      console.log("An error occurred while hashing one of your passwords, please check the format of the password at index " + index)
       return;
     }
   };
