@@ -24,7 +24,22 @@ async function hashSinglePassword(passwordStr) {
 }
 
 async function hashPasswordArray(passwordsArr) {
-  console.log("Hey Look Ma I Made It");
+  console.log("Input Password : Hashed Output");
+  console.log("------------------------------");
+  
+  passwordsArr.forEach(password => {
+    try {
+      const hashedPassword = await bcrypt.hash(passwordStr, 12);
+  
+      if (compareSuccess) {
+        console.log("Password successfully hashed")
+        console.log(hashedPassword);
+      } else {
+        console.log("Something went wrong, hashed password does not compare successfully with provided password");
+        return;
+      };
+    }
+  })
 }
 
 async function checkInput() {
