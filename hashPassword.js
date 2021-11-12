@@ -10,9 +10,9 @@ if (!passwordInput) {
 let passwordArray = [];
 
 async function hashSinglePassword(passwordStr) {
-  const hashedPassword = await bcrypt.hash(process.argv[2], 12);
+  const hashedPassword = await bcrypt.hash(passwordStr, 12);
   
-  const compareSuccess = await bcrypt.compare(process.argv[2], hashedPassword);
+  const compareSuccess = await bcrypt.compare(passwordStr, hashedPassword);
   
   if (compareSuccess) {
     console.log("Password successfully hashed")
@@ -24,7 +24,7 @@ async function hashSinglePassword(passwordStr) {
 }
 
 async function hashPasswordArray(passwordsArr) {
-
+  console.log("Hey Look Ma I Made It");
 }
 
 async function checkInput() {
@@ -40,8 +40,9 @@ async function checkInput() {
   }
 
   // If passwordArray has contents, hash those instead of passwordInput
-  //! 
-
+  passwordArray.length > 0 ?
+    hashPasswordArray(passwordArray)
+  : hashSinglePassword(passwordInput);
 };
 
 checkInput();
