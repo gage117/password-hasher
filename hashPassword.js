@@ -1,10 +1,6 @@
 const bcrypt = require('bcrypt');
 
 const passwordInput = process.argv[2];
-if (!passwordInput) {
-  console.log("Must provide a password string or stringified array of passwords as third argument.")
-  return;
-}
 
 // Copy an array of passwords here if you don't want to pass a stringified version as an argument
 let passwordArray = [];
@@ -41,6 +37,8 @@ async function hashPasswordArray(passwordArr) {
 }
 
 async function checkInput() {
+  // If array has a length greater than zero before parsin input, parse that instead
+  if (passwordArray.length > 0) { return hashPasswordArray(passwordArray); }
   // If string starts with a [ and ends with a ], try to parse as array
   if (passwordInput.charAt(0) === "[" && passwordInput.charAt(passwordInput.length - 1) === "]") {
     try {
